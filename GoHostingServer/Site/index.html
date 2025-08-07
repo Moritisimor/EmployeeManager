@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frontend Test</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+  <nav class="NavBar">
+    <ul>
+        <li><a href="index.html">Home page</a></li>
+        <li>Create Employee</li>
+        <li>Query Employee</li>
+    </ul>
+  </nav>
+  <h1>Frontend Test</h1>
+    <div class="EmployeeQueryTest">
+      <h2>Employee API</h2>
+      <h3>Enter the ID you would like to query</h3>
+      <textarea id="queryIdInput"></textarea><br>
+      <button id="GetEmployeeInfoButton">Query!</button>
+      <h4 id="nameHeader">Name:</h4>
+      <h4 id="positionHeader">Position:</h4>
+      <h4 id="idHeader">ID:</h4>
+      <h4 id="weeklySalaryHeader">Weekly Salary</h4>
+      <h4 id="monthlySalaryHeader">Monthly Salary:</h4>
+      <h4 id="yearlySalaryHeader">Yearly Salary:</h4>
+      <script src="app.js"></script>
+    </div>
+</body>
+</html>
