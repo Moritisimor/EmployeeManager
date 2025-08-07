@@ -48,11 +48,6 @@ public class Employee {
         return null;
     }
 
-    public String getInformation() {
-        return String.format("Name: %s\nId: %s\nPosition: %s\nSalary:\n-Weekly: %.2f\n-Monthly: %.2f\n-Yearly: %.2f\n",
-        this.getName(), this.getId(), this.getPosition(), this.getWeeklySalary(), this.getMonthlySalary(), this.getYearlySalary());
-    }
-
     public void setName(String name)            { this.name = name; }
     public void setPosition(String position)    { this.position = position; }
     public void setId(String id)                { this.id = id; }
