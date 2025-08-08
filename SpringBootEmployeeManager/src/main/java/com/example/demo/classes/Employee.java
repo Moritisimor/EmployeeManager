@@ -20,7 +20,7 @@ public class Employee {
         }
     }
 
-    public void fireEmployee(ArrayList<Employee> employeeList) {
+    public void fireEmployee(ArrayList<Employee> employeeList) { // This may be removed
         employeeList.remove(this);
     }
 

@@ -37,10 +37,50 @@ public class EmployeeController {
         return EmployeeManager.employeeList;
     }
 
+    @GetMapping("/EmployeeConfig/{option}/{queryId}/{amountString}")
+    public ResponseEntity<String> handleEmployeeConfig(@PathVariable String option, @PathVariable String queryId, @PathVariable String amountString) {
+        Double amount;
+        try {
+            amount = Double.parseDouble(amountString);
+        } catch (NumberFormatException error) {
+            throw new BadRequestException("Expected number, got string instead.", error);
+        }
+
+        if (amount < 0) {
+            throw new BadRequestException("Number may not be negative.");
+        }
+
+        for (Employee employee : EmployeeManager.employeeList) {
+            if (employee.getId().equals(queryId)) {
+                if (option.equals("demote")) {
+                    employee.demoteEmployee(amount);
+                    return ResponseEntity.status(HttpStatus.OK).body("Successfully demoted employee.");
+                } else if (option.equals("promote")) {
+                    employee.promoteEmployee(amount);
+                    return ResponseEntity.status(HttpStatus.OK).body("Successfully promoted employee.");
+                } else {
+                    throw new BadRequestException("Bad option variable.");
+                }
+            }
+        }
+        throw new NotFoundException("Could not find specified ID.");
+    }
+
+    @GetMapping("/EmployeeFire/{queryId}")
+    public ResponseEntity<String> handleEmployeeFire(@PathVariable String queryId) {
+        for (var employee : EmployeeManager.employeeList) {
+            if (employee.getId().equals(queryId)) {
+                EmployeeManager.employeeList.remove(employee);
+                return ResponseEntity.status(HttpStatus.OK).body("Successfully fired employee.");
+            }
+        }
+        throw new NotFoundException("Could not find specified ID.");
+    }
+
     @GetMapping("/EmployeeCreate/{firstName}/{lastName}/{position}/{id}/{monthlySalaryString}")
     public ResponseEntity<String> handleEmployeeCreation(@PathVariable String firstName, @PathVariable String lastName, // What a monster!
     @PathVariable String position, @PathVariable String id, @PathVariable String monthlySalaryString) {
-        String fullName = firstName + " " +lastName;
+        String fullName = firstName + " " + lastName;
         Double monthlySalary;
         try {
             monthlySalary = Double.parseDouble(monthlySalaryString);
