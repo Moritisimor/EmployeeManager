@@ -5,10 +5,13 @@ let idHeader                = document.getElementById("idHeader");
 let weeklySalaryHeader      = document.getElementById("weeklySalaryHeader");
 let monthlySalaryHeader     = document.getElementById("monthlySalaryHeader");
 let yearlySalaryHeader      = document.getElementById("yearlySalaryHeader");
-let queryIDInput            = document.getElementById("queryIdInput");
+let queryIdInput            = document.getElementById("queryIdInput");
 
 EmployeeInfoButton.addEventListener("click", () => {
-    const path = "http://localhost:8070/EmployeeQuery/" + queryIDInput.value;
+    if (queryIdInput.value.trim() == "") {
+        alert("Do not leave the input field blank!");
+    }
+    const path = "http://localhost:8070/EmployeeQuery/" + queryIdInput.value;
     fetch(path)
     .then(response => {
         if (!response.ok) {

@@ -33,7 +33,7 @@ public class EmployeeController {
     @GetMapping("/EmployeeCreate/{firstName}/{lastName}/{position}/{id}/{monthlySalaryString}")
     public ResponseEntity<String> handleEmployeeCreation(@PathVariable String firstName, @PathVariable String lastName, // What a monster!
     @PathVariable String position, @PathVariable String id, @PathVariable String monthlySalaryString) {
-        String fullName = firstName + lastName;
+        String fullName = firstName + " " +lastName;
         Double monthlySalary;
         try {
             monthlySalary = Double.parseDouble(monthlySalaryString);
