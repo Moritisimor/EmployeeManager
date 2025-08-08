@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +30,11 @@ public class EmployeeController {
             return selectedEmployee;
         }
         throw new NotFoundException("ID not found");
+    }
+
+    @GetMapping("/EmployeeList")
+    public ArrayList<Employee> handleEmployeeList() {
+        return EmployeeManager.employeeList;
     }
 
     @GetMapping("/EmployeeCreate/{firstName}/{lastName}/{position}/{id}/{monthlySalaryString}")

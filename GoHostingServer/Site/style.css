@@ -21,9 +21,10 @@ html {
     margin-left: 20px;
 }
 
-.EmployeeQueryArea, .EmployeeCreationArea {
+.EmployeeQueryArea, .EmployeeCreationArea, .RegisteredEmployeeArea {
     border: solid white;
     display: inline-block;
     padding: 1.5%;
     border-radius: 50px;
+    list-style: none;
 }

@@ -13,7 +13,7 @@ submitButton.addEventListener("click", () => {
     .then(response => {
         if (!response.ok) {
             if (response.status == 400) {
-                alert("Invalid input! Monthly salary must be of numeric value!");
+                alert("Invalid input! Monthly salary must be of numeric value and may not be negative!");
                 throw new error("Bad Request error");
             } else if (response.status == 409) {
                 alert("This ID is already taken! Try another one.");
