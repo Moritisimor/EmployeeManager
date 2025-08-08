@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee Query Site</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="../style.css"/>
+</head>
+<body>
+  <nav class="NavBar">
+    <ul>
+        <li><a href="../index.html">Home page</a></li>
+        <li><a href="../EmployeeCreation/EmployeeCreation.html">Create Employees</a></li>
+        <li><a href="../EmployeeQuery/EmployeeQuery.html">Query Employees</a></li>
+        <li><a href="../EmployeeConfiguration/EmployeeConfiguration.html">Configure Employees</a></li>
+    </ul>
+  </nav>
+  <h1>Employee Query</h1>
+    <div class="EmployeeQueryArea">
+      <h2>Enter the ID you want to query</h2>
+      <textarea id="queryIdInput"></textarea><br>
+      <button id="GetEmployeeInfoButton">Query!</button>
+      <h4 id="nameHeader">Name:</h4>
+      <h4 id="positionHeader">Position:</h4>
+      <h4 id="idHeader">ID:</h4>
+      <h4 id="weeklySalaryHeader">Weekly Salary</h4>
+      <h4 id="monthlySalaryHeader">Monthly Salary:</h4>
+      <h4 id="yearlySalaryHeader">Yearly Salary:</h4>
+      <script src="EmployeeQuery.js"></script>
+    </div>
+</body>
+</html>
