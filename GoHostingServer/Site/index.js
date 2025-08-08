@@ -2,6 +2,9 @@ let refreshButton           = document.getElementById("refreshButton");
 let registeredEmployeeList  = document.getElementById("registeredEmployeeList");
 
 function getEmployeeList() {
+    while (registeredEmployeeList.hasChildNodes()) {
+        registeredEmployeeList.removeChild(registeredEmployeeList.firstChild)
+    }
     fetch("http://localhost:8070/EmployeeList")
     .then(Response => {
         if (!Response.ok) {
