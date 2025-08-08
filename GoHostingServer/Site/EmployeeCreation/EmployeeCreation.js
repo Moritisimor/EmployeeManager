@@ -12,10 +12,10 @@ submitButton.addEventListener("click", () => {
     fetch("http://localhost:8070" + path)
     .then(response => {
         if (!response.ok) {
-            if (response.status == 400) {
+            if (response.status === 400) {
                 alert("Invalid input! Monthly salary must be of numeric value and may not be negative!");
                 throw new error("Bad Request error");
-            } else if (response.status == 409) {
+            } else if (response.status === 409) {
                 alert("This ID is already taken! Try another one.");
                 throw new error("Conflict error");
             } else {
@@ -23,8 +23,8 @@ submitButton.addEventListener("click", () => {
                 throw new error("Unknown error");
             }
         }
-        if (response.status == 201) {
-            alert("Succesfully created employee!");
+        if (response.status === 201) {
+            alert("Successfully created employee!");
         }
     })
 });
