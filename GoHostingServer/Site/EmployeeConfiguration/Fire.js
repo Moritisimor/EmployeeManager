@@ -6,9 +6,9 @@ FireButton.addEventListener("click", () => {
     .then(Response => {
         if (!Response.ok) {
             if (Response.status === 404) {
-                throw "Could not find specified ID";
+                throw Error("Could not find specified ID");
             }
-        alert("Succesfully fired employee.");
+        alert("Successfully fired employee.");
         }
     })
     .catch(Error => {

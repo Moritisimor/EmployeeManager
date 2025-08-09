@@ -8,13 +8,13 @@ function promoteOrDemote(operator) {
     .then(Response => {
         if (!Response.ok) {
             if (Response.status === 404) {
-                throw "Wrong ID or maybe wrong operator.";
+                throw Error("Wrong ID or maybe wrong operator.");
             }
             if (Response.status === 400) {
-                throw "Wrong number argument.";
+                throw Error("Wrong number argument.");
             }
         }
-        alert("Succesfully promoted employee");
+        alert("Successfully promoted employee");
     })
     .catch(Error => {
         alert("The following Error has occurred: " + Error)

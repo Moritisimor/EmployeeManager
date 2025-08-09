@@ -15,17 +15,19 @@ submitButton.addEventListener("click", () => {
         if (!response.ok) {
             if (response.status === 400) {
                 alert("Invalid input! Monthly salary must be of numeric value and may not be negative!");
-                throw new error("Bad Request error");
+                throw new Error("Bad Request error");
             } else if (response.status === 409) {
                 alert("This ID is already taken! Try another one.");
-                throw new error("Conflict error");
+                throw new Error("Conflict error");
             } else {
                 alert("An unknown error has occurred!");
-                throw new error("Unknown error");
+                throw new Error("Unknown error");
             }
         }
         if (response.status === 201) {
             alert("Successfully created employee!");
         }
-    })
+    }).catch(Error => {
+        alert("The following error has occurred: " + Error.message);
+    });
 });

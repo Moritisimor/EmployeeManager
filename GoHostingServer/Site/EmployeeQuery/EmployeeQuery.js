@@ -8,19 +8,17 @@ let yearlySalaryHeader      = document.getElementById("yearlySalaryHeader");
 let queryIdInput            = document.getElementById("queryIdInput");
 
 EmployeeInfoButton.addEventListener("click", () => {
-    if (queryIdInput.value.trim() == "") {
+    if (queryIdInput.value.trim() === "") {
         alert("Do not leave the input field blank!");
     }
     const path = "http://localhost:8070/EmployeeQuery/" + queryIdInput.value;
     fetch(path)
     .then(response => {
         if (!response.ok) {
-            if (response.status == 404) {
-                alert("The ID you entered could not be found ");
-                throw new Error("ID not found");
+            if (response.status === 404) {
+                throw Error("ID not found");
             } else {
-                alert("An unknown error has occurred!");
-                throw new Error("An unkown error has occurred!");
+                throw Error("An unknown error has occurred!");
             }
         }
         return response.json();
@@ -33,5 +31,5 @@ EmployeeInfoButton.addEventListener("click", () => {
         weeklySalaryHeader.textContent  = "Weekly Salary: "     + data.weeklySalary;
         monthlySalaryHeader.textContent = "Monthly Salary: "    + data.monthlySalary;
         yearlySalaryHeader.textContent  = "Yearly Salary: "     + data.yearlySalary;
-    })
-})
+    });
+});

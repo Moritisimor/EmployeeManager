@@ -8,8 +8,7 @@ function getEmployeeList() {
     fetch("http://localhost:8070/EmployeeList")
     .then(Response => {
         if (!Response.ok) {
-            alert("An error has occurred!");
-            throw new error("An unknown error has occurred");
+            throw new Error("An unknown error has occurred");
         }
         return Response.json();
     })
@@ -19,7 +18,7 @@ function getEmployeeList() {
             entry.textContent = Data[i].name + " " + "ID: " + Data[i].id;
             registeredEmployeeList.appendChild(entry);
         }
-    })
+    });
 }
 window.onload = () => getEmployeeList();
 refreshButton.addEventListener("click", () => getEmployeeList());
