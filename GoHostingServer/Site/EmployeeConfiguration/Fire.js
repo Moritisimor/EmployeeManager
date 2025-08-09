@@ -2,7 +2,7 @@ let FireIdTextArea  = document.getElementById("FireIdTextArea");
 let FireButton      = document.getElementById("FireButton");
 
 FireButton.addEventListener("click", () => {
-    fetch(`http://localhost:8070/EmployeeFire/${FireIdTextArea.value}`)
+    fetch(`http://localhost:8070/EmployeeFire/${FireIdTextArea.value}`, {method: "POST"})
     .then(Response => {
         if (!Response.ok) {
             if (Response.status === 404) {

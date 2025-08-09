@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.exceptions.BadRequestException;
@@ -37,7 +38,7 @@ public class EmployeeController {
         return EmployeeManager.employeeList;
     }
 
-    @GetMapping("/EmployeeConfig/{option}/{queryId}/{amountString}")
+    @PostMapping("/EmployeeConfig/{option}/{queryId}/{amountString}")
     public ResponseEntity<String> handleEmployeeConfig(@PathVariable String option, @PathVariable String queryId, @PathVariable String amountString) {
         Double amount;
         try {
@@ -66,7 +67,7 @@ public class EmployeeController {
         throw new NotFoundException("Could not find specified ID.");
     }
 
-    @GetMapping("/EmployeeFire/{queryId}")
+    @PostMapping("/EmployeeFire/{queryId}")
     public ResponseEntity<String> handleEmployeeFire(@PathVariable String queryId) {
         for (var employee : EmployeeManager.employeeList) {
             if (employee.getId().equals(queryId)) {
@@ -77,7 +78,7 @@ public class EmployeeController {
         throw new NotFoundException("Could not find specified ID.");
     }
 
-    @GetMapping("/EmployeeCreate/{firstName}/{lastName}/{position}/{id}/{monthlySalaryString}")
+    @PostMapping("/EmployeeCreate/{firstName}/{lastName}/{position}/{id}/{monthlySalaryString}")
     public ResponseEntity<String> handleEmployeeCreation(@PathVariable String firstName, @PathVariable String lastName, // What a monster!
     @PathVariable String position, @PathVariable String id, @PathVariable String monthlySalaryString) {
         String fullName = firstName + " " + lastName;

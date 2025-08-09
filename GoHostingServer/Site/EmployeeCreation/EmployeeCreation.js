@@ -9,7 +9,8 @@ submitButton.addEventListener("click", () => {
     let path = `/EmployeeCreate/${firstNameTextArea.value}/${lastNameTextArea.value}/${positionTextArea.value}
     /${idTextArea.value}/${monthlySalaryTextArea.value}`;
 
-    fetch("http://localhost:8070" + path)
+    fetch("http://localhost:8070" + path, {method: "POST"})
+    
     .then(response => {
         if (!response.ok) {
             if (response.status === 400) {

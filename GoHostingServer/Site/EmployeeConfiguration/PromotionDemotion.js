@@ -4,7 +4,7 @@ let DemoteButton    = document.getElementById("DemoteButton");
 let PromoteButton   = document.getElementById("PromoteButton");
 
 function promoteOrDemote(operator) {
-    fetch(`http://localhost:8070/EmployeeConfig/${operator}/${IdTextArea.value}/${AmountTextArea.value}`)
+    fetch(`http://localhost:8070/EmployeeConfig/${operator}/${IdTextArea.value}/${AmountTextArea.value}`, {method: "POST"})
     .then(Response => {
         if (!Response.ok) {
             if (Response.status === 404) {
