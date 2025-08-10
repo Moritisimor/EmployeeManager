@@ -1,4 +1,4 @@
-package com.example.demo.controllers.EmployeeGetControllers;
+package com.example.demo.controllers.EmployeePostControllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.demo.controllers.EmployeePostController;
+package com.example.demo.controllers.EmployeeGetControllers;
 
 import java.util.ArrayList;
 
