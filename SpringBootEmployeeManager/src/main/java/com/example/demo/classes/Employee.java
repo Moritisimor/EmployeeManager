@@ -8,20 +8,29 @@ public class Employee {
     private String id;
     private Double monthlySalary;
 
-    public void promoteEmployee(Double amount) {
+    public void promote(Double amount) {
         if (amount > 0) {
             this.setMonthlySalary(this.monthlySalary += amount);
         }
     }
 
-    public void demoteEmployee(Double amount) {
+    public void demote(Double amount) {
         if (amount > 0) {
             this.setMonthlySalary(this.monthlySalary -= amount);
         }
     }
 
-    public void fireEmployee(ArrayList<Employee> employeeList) { // This may be removed
+    public void fire(ArrayList<Employee> employeeList) {
         employeeList.remove(this);
+    }
+
+    public static Employee getEmployeeFromList(ArrayList<Employee> employeeList, String queryId) {
+        for (var employee : employeeList) {
+            if (queryId.equals(employee.getId())) {
+                return employee;
+            }
+        }
+        return null;
     }
 
     public String getName()     { return this.name; }

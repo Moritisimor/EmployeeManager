@@ -14,7 +14,7 @@ function promoteOrDemote(operator) {
                 throw Error("Wrong number argument.");
             }
         }
-        alert("Successfully promoted employee");
+        alert(`Succesfully ${operator}d employee`);
     })
     .catch(Error => {
         alert("The following Error has occurred: " + Error)
