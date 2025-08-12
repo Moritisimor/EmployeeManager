@@ -27,7 +27,7 @@ submitButton.addEventListener("click", () => {
         if (response.status === 201) {
             alert("Successfully created employee!");
         }
-    }).catch(Error => {
-        alert("The following error has occurred: " + Error.message);
+    }).catch(error => {
+        alert(`The following error has occurred: ${error}`);
     });
 });

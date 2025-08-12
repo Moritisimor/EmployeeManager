@@ -5,19 +5,19 @@ let PromoteButton   = document.getElementById("PromoteButton");
 
 function promoteOrDemote(operator) {
     fetch(`http://localhost:8070/EmployeeConfig/${operator}/${IdTextArea.value}/${AmountTextArea.value}`, {method: "POST"})
-    .then(Response => {
-        if (!Response.ok) {
-            if (Response.status === 404) {
+    .then(response => {
+        if (!response.ok) {
+            if (response.status === 404) {
                 throw Error("Wrong ID or maybe wrong operator.");
             }
-            if (Response.status === 400) {
+            if (response.status === 400) {
                 throw Error("Wrong number argument.");
             }
         }
         alert(`Succesfully ${operator}d employee`);
     })
-    .catch(Error => {
-        alert("The following Error has occurred: " + Error)
+    .catch(error => {
+        alert(`The following Error has occurred: ${error}`)
     }); 
 }
 
