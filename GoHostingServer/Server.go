@@ -20,13 +20,13 @@ func main() {
 	var selectedPort string
 	if len(os.Args) < 2 {
 		fmt.Println("No args, defaulting to port 8080.")
-		selectedPort = ":8080"
+		selectedPort = "0.0.0.0:8080"
 	} else {
-		selectedPort = ":" + os.Args[1]
+		selectedPort = "0.0.0.0:" + os.Args[1]
 	}
 	fmt.Println("Starting Server...")
-	fmt.Printf("Listening on Port %s\n", selectedPort)
+	fmt.Printf("Listening on: %s\n", selectedPort)
 	http.Handle("/", http.FileServer(http.Dir("Site")))
 	http.HandleFunc("/command/", handleCommands)
-	http.ListenAndServe("localhost" + selectedPort, nil)
+	http.ListenAndServe(selectedPort, nil)
 }
