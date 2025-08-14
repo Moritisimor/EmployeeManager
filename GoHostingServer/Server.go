@@ -16,6 +16,12 @@ func handleCommands(writer http.ResponseWriter, requestPtr *http.Request) {
 	}
 }
 
+func handlePingWrapper(port string) http.HandlerFunc {
+	return func(writer http.ResponseWriter, requestPtr *http.Request) {
+		writer.Write([]byte("Hello Client, I am a Go HTTP Server. \nI Am currently listening on: " + port + "\n"))
+	}
+}
+
 func main() {
 	var selectedPort string
 	if len(os.Args) < 2 {
@@ -27,6 +33,7 @@ func main() {
 	fmt.Println("Starting Server...")
 	fmt.Printf("Listening on: %s\n", selectedPort)
 	http.Handle("/", http.FileServer(http.Dir("Site")))
+	http.Handle("/ping", handlePingWrapper(selectedPort))
 	http.HandleFunc("/command/", handleCommands)
 	http.ListenAndServe(selectedPort, nil)
 }
