@@ -15,7 +15,7 @@ public class EmployeeQuery {
     @GetMapping("EmployeeQuery/{queryId}")
     public Employee handleEmployeeQuery(@PathVariable String queryId) {
         Employee selectedEmployee = null;
-        for (Employee employee : EmployeeManager.employeeList) {
+        for (var employee : EmployeeManager.employeeList) {
             if (queryId.equals(employee.getId())) {
                 selectedEmployee = employee;
             }

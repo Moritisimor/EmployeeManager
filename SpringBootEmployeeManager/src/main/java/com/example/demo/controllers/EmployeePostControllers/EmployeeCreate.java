@@ -18,7 +18,7 @@ public class EmployeeCreate {
     @PostMapping("EmployeeCreate/{firstName}/{lastName}/{position}/{id}/{monthlySalaryString}")
     public ResponseEntity<String> handleEmployeeCreation(@PathVariable String firstName, @PathVariable String lastName,
     @PathVariable String position, @PathVariable String id, @PathVariable String monthlySalaryString) {
-        String fullName = firstName + " " + lastName;
+        var fullName = firstName + " " + lastName;
         Double monthlySalary;
         try {
             monthlySalary = Double.parseDouble(monthlySalaryString);
@@ -36,7 +36,7 @@ public class EmployeeCreate {
             }
         }
 
-        Employee newGuy = new Employee();
+        var newGuy = new Employee();
         newGuy.setName(fullName);
         newGuy.setPosition(position);
         newGuy.setMonthlySalary(monthlySalary);
