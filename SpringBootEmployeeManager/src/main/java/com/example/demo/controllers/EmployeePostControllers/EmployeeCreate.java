@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.EmployeeManager;
 import com.example.demo.classes.Employee;
-import com.example.demo.exceptions.ConflictException;
-import com.example.demo.exceptions.BadRequestException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
@@ -23,16 +21,16 @@ public class EmployeeCreate {
         try {
             monthlySalary = Double.parseDouble(monthlySalaryString);
         } catch (NumberFormatException e) {
-            throw new BadRequestException("Expected Double, got String", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Expected number, got string instead.");
         }
 
         if (monthlySalary < 0) {
-            throw new BadRequestException("Expected Positive number, got negative number.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Expected Positive number, got negative number.");
         }
 
         for (var employee : EmployeeManager.employeeList) {
             if (employee.getId().equals(id)) {
-                throw new ConflictException("This ID is already taken.");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("This ID is already taken.");
             }
         }
 

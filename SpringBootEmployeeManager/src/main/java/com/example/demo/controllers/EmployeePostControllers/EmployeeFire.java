@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.EmployeeManager;
 import com.example.demo.classes.Employee;
-import com.example.demo.exceptions.NotFoundException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
@@ -21,6 +20,6 @@ public class EmployeeFire {
             employee.fire(EmployeeManager.employeeList);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Succesfully fired employee");
         }
-        throw new NotFoundException("Could not find ID.");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The employee by the ID you entered was not found.");
     }
 }

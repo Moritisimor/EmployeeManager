@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.EmployeeManager;
 import com.example.demo.classes.Employee;
-import com.example.demo.exceptions.BadRequestException;
-import com.example.demo.exceptions.NotFoundException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
@@ -21,11 +19,11 @@ public class EmployeeConfig {
         try {
             amount = Double.parseDouble(amountString);
         } catch (NumberFormatException error) {
-            throw new BadRequestException("Expected number, got string instead.", error);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Expected number, got string instead.");
         }
 
         if (amount < 0) {
-            throw new BadRequestException("Number may not be negative.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Number may not be negative.");
         }
 
         var employee = Employee.getEmployeeFromList(EmployeeManager.employeeList, queryId);
@@ -37,9 +35,9 @@ public class EmployeeConfig {
                 employee.demote(amount);
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body("Succesfully demoted employee");
             } else {
-                throw new BadRequestException("Invalid option parameter");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid operator, please only use promote or demote.");
             }
         }
-        throw new NotFoundException("Could not find specified ID.");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("An employee by this ID was not found.");
     }
 }
