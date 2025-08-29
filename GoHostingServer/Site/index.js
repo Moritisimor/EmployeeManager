@@ -13,7 +13,7 @@ function getEmployeeList() {
         return response.json();
     })
     .then(parsedJson => {
-        for (i = 0; i < parsedJson.length; i++) {
+        for (let i = 0; i < parsedJson.length; i++) {
             let entry = document.createElement("li");
             entry.textContent = parsedJson[i].name + " " + "ID: " + parsedJson[i].id;
             registeredEmployeeList.appendChild(entry);

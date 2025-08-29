@@ -19,14 +19,14 @@ EmployeeInfoButton.addEventListener("click", () => {
         }
         return response.json();
     })
-    .then(parsedJson => {
-        console.log(parsedJson);
-        nameHeader.textContent          = "Name: "              + parsedJson.name;
-        positionHeader.textContent      = "Position: "          + parsedJson.position;
-        idHeader.textContent            = "ID: "                + parsedJson.id;
-        weeklySalaryHeader.textContent  = "Weekly Salary: "     + parsedJson.weeklySalary;
-        monthlySalaryHeader.textContent = "Monthly Salary: "    + parsedJson.monthlySalary;
-        yearlySalaryHeader.textContent  = "Yearly Salary: "     + parsedJson.yearlySalary;
+    .then(data => {
+        console.log(data);
+        nameHeader.textContent          = `Name: ${data["name"]}`;
+        positionHeader.textContent      = `Position: ${data["position"]}`;
+        idHeader.textContent            = `ID: ${data["id"]}`;
+        weeklySalaryHeader.textContent  = `Weekly Salary: ${data["weeklySalary"]}`;
+        monthlySalaryHeader.textContent = `Monthly Salary: ${data["monthlySalary"]}`;
+        yearlySalaryHeader.textContent  = `Yearly Salary: ${data["yearlySalary"]}`;
     })
     .catch(Error => {
         alert(`The following error has occurred: ${Error}`);
