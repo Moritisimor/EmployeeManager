@@ -19,25 +19,37 @@ public class EmployeeConfig {
         try {
             amount = Double.parseDouble(amountString);
         } catch (NumberFormatException error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Expected number, got string instead.");
+            return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body("Expected number, got string instead.");
         }
 
         if (amount < 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Number may not be negative.");
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Number may not be negative.");
         }
 
         var employee = Employee.getEmployeeFromList(EmployeeManager.employeeList, queryId);
         if (employee != null) {
             if (option.equals("promote")) {
                 employee.promote(amount);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body("Succesfully promoted employee");
+                return ResponseEntity
+                    .status(HttpStatus.ACCEPTED)
+                    .body("Succesfully promoted employee");
             } else if (option.equals("demote")) {
                 employee.demote(amount);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body("Succesfully demoted employee");
+                return ResponseEntity
+                    .status(HttpStatus.ACCEPTED)
+                    .body("Succesfully demoted employee");
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid operator, please only use promote or demote.");
+                return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Invalid operator, please only use promote or demote.");
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("An employee by this ID was not found.");
+        return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body("{message: successfully }");
     }
 }

@@ -21,16 +21,22 @@ public class EmployeeCreate {
         try {
             monthlySalary = Double.parseDouble(monthlySalaryString);
         } catch (NumberFormatException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Expected number, got string instead.");
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Expected number, got string instead.");
         }
 
         if (monthlySalary < 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Expected Positive number, got negative number.");
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Expected Positive number, got negative number.");
         }
 
         for (var employee : EmployeeManager.employeeList) {
             if (employee.getId().equals(id)) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("This ID is already taken.");
+                return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("This ID is already taken.");
             }
         }
 
@@ -41,6 +47,8 @@ public class EmployeeCreate {
         newGuy.setId(id);
         EmployeeManager.employeeList.add(newGuy);
         
-        return ResponseEntity.status(HttpStatus.CREATED).body("Creation Succesful.\n");
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body("Creation Succesful.\n");
     }
 }

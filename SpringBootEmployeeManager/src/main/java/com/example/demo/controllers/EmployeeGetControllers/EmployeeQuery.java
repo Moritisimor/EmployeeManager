@@ -1,5 +1,8 @@
 package com.example.demo.controllers.EmployeeGetControllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +16,7 @@ import com.example.demo.exceptions.NotFoundException;
 @CrossOrigin(origins = "http://localhost:8080")
 public class EmployeeQuery {
     @GetMapping("EmployeeQuery/{queryId}")
-    public Employee handleEmployeeQuery(@PathVariable String queryId) {
+    public ResponseEntity<Employee> handleEmployeeQuery(@PathVariable String queryId) {
         Employee selectedEmployee = null;
         for (var employee : EmployeeManager.employeeList) {
             if (queryId.equals(employee.getId())) {
@@ -21,7 +24,10 @@ public class EmployeeQuery {
             }
         }
         if (selectedEmployee != null) {
-            return selectedEmployee;
+            return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(selectedEmployee);
         }
         throw new NotFoundException("ID not found");
     }

@@ -18,8 +18,12 @@ public class EmployeeFire {
         var employee = Employee.getEmployeeFromList(EmployeeManager.employeeList, queryId);
         if (employee != null) {
             employee.fire(EmployeeManager.employeeList);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Succesfully fired employee");
+            return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body("Succesfully fired employee");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The employee by the ID you entered was not found.");
+        return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body("The employee by the ID you entered was not found.");
     }
 }
